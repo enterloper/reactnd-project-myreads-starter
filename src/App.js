@@ -13,6 +13,13 @@ class BooksApp extends React.Component {
     showSearchPage: true
   }
 
+  // removeBook = (book) => {
+  //   console.log("Hello from the removeBook function / method");
+  //   this.setState((state) => ({
+  //     books: state.books.filter((b) => b.id !== book.id)
+  //   }))
+  // }
+
   render() {
     return (
       <div className="app">
@@ -166,7 +173,7 @@ class BooksApp extends React.Component {
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: 'url("http://books.google.com/books/content?id=32haAAAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72yckZ5f5bDFVIf7BGPbjA0KYYtlQ__nWB-hI_YZmZ-fScYwFy4O_fWOcPwf-pgv3pPQNJP_sT5J_xOUciD8WaKmevh1rUR-1jk7g1aCD_KeJaOpjVu0cm_11BBIUXdxbFkVMdi&source=gbs_api")' }}></div>
                             <div className="book-shelf-changer">
-                              <select>
+                              <select onChange={this.removeBook} value={this.state.value}>
                                 <option value="none" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
