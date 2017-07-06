@@ -20,6 +20,15 @@ class BooksApp extends React.Component {
   //   }))
   // }
 
+  // the below method is where this app should make AJAX requests.
+  componentDidMount() {
+
+  }
+
+  // removeBook: function(event){
+  //   this.setState({value: event.target.value});
+  // }
+
   render() {
     return (
       <div className="app">
