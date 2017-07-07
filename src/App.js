@@ -15,6 +15,7 @@ class BooksApp extends Component {
        */
 
       // showSearchPage: true
+      books: []
     }
 
   // the below method is where this app should make AJAX requests.
