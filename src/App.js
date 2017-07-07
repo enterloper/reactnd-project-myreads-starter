@@ -22,7 +22,9 @@ class BooksApp extends React.Component {
 
   // the below method is where this app should make AJAX requests.
   componentDidMount() {
-
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
   }
 
   // removeBook: function(event){
