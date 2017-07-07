@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import * as BooksAPI from '../BooksAPI'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
   render() {
