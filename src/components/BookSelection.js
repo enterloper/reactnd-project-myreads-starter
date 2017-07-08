@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 class BookSelection extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
 
+    };
   }
 
   selectionTest() {
