@@ -11,20 +11,18 @@ const propTypes = {
 
 function Book(props) {
   return (
-    <li>
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ backgroundImage: props.url }}></div>
-          <BookSelection />
-        </div>
-        <div className="book-title">
-          {props.title}
-        </div>
-        <div className="book-authors">
-          {props.author}
-        </div>
+    <div key={props.url} className="book">
+      <div className="book-top">
+        <div className="book-cover" style={{ backgroundImage: props.url }}></div>
+        <BookSelection />
       </div>
-    </li>
+      <div className="book-title">
+        {props.title}
+      </div>
+      <div className="book-authors">
+        {props.author}
+      </div>
+    </div>
   );
 }
 

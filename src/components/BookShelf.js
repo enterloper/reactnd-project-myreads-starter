@@ -10,7 +10,7 @@ const propTypes = {
 
 function renderBooks(bookData) {
   return bookData.map(book => (
-    <Book url={book.url} title={book.title} author={book.author} />
+    <Book key={book.url} url={book.url} title={book.title} author={book.author} />
   ));
 }
 
@@ -20,9 +20,7 @@ function BookShelf(props) {
     <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
-        <ol className="books-grid">
-          {renderBooks(books)}
-        </ol>
+        {renderBooks(books)}
       </div>
     </div>
   );

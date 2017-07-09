@@ -8,28 +8,40 @@ class ListBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      showSearchPage: this.props.location === '/search',
     };
-
+    this.toggleSearch = this.toggleSearch.bind(this);
   }
 
+  toggleSearch() {
+    const dropPoint = window.location.pathname === '/' ?
+      'http://localhost:3000/search' :
+      'http://localhost:3000/';
+
+    window.location.assign(dropPoint);
+    this.setState({
+      showSearchPage: !this.state.showSearchPage,
+    });
+  }
+  
   selectionTest() {
     console.log("Hello from selectionTest method / function");
   }
 
   renderBookShelves(bookSectionData) {
     return bookSectionData.map(section =>
-      <BookShelf title={section.title} books={section.books} />
+      <BookShelf key={section.title} title={section.title} books={section.books} />
     );
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+              <a className="close-search" onClick={this.toggleSearch}>Close</a>
               <div className="search-books-input-wrapper">
                 <input type="text" placeholder="Search by title or author"/>
               </div>
@@ -49,7 +61,7 @@ class ListBooks extends Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              <a onClick={this.toggleSearch}>Add a book</a>
             </div>
           </div>
         )}

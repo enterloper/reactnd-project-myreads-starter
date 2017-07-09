@@ -4,7 +4,13 @@ import ListBooks from './components/ListBooks';
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends Component {
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      location: window.location.pathname,
+    };
+  }
       // set your state here
 
       /**
@@ -15,8 +21,6 @@ class BooksApp extends Component {
        */
 
       // showSearchPage: true
-      books: []
-    }
 
   // the below method is where this app should make AJAX requests.
   componentDidMount() {
@@ -39,9 +43,10 @@ class BooksApp extends Component {
   // }
 
   render() {
+    const { location, books } = this.state;
     return (
       <div>
-        <ListBooks />
+        <ListBooks location={location} books={books} />
       </div>
     )
   }
