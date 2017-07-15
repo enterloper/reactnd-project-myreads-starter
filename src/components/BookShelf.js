@@ -9,9 +9,12 @@ const propTypes = {
 };
 
 function renderBooks(bookData) {
-  return bookData.map(book => (
-    <Book key={book.url} url={book.url} title={book.title} author={book.author} />
-  ));
+  return bookData.map(book => {
+    console.log('BOOOOK -->', book);
+    return(
+      <Book key={book.url} url={book.imageLinks.thumbnail} title={book.title} author={book.authors[0]} />
+	  )
+  });
 }
 
 function BookShelf(props) {
