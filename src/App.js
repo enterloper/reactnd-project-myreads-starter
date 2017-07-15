@@ -29,19 +29,6 @@ class BooksApp extends Component {
     })
   }
 
-  // removeBook = (book) => {
-  //   console.log("Hello from the removeBook function / method");
-  //   this.setState((state) => ({
-  //     books: state.books.filter((b) => b.id !== book.id)
-  //   }))
-  // }
-
-
-
-  // removeBook: function(event){
-  //   this.setState({value: event.target.value});
-  // }
-
   render() {
     const { location, books } = this.state;
     return (

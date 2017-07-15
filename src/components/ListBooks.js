@@ -9,6 +9,7 @@ class ListBooks extends Component {
     super(props);
     this.state = {
       showSearchPage: this.props.location === '/search',
+
     };
     this.toggleSearch = this.toggleSearch.bind(this);
   }
@@ -35,7 +36,7 @@ class ListBooks extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("ListBook Props:", this.props);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
