@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 // import * as BooksAPI from '../BooksAPI'
 // import PropTypes from 'prop-types'
 import BookShelf from './BookShelf';
-import mockLibrary from '../data/mockLibrary';
 
 class ListBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showSearchPage: this.props.location === '/search',
-
     };
+		
     this.toggleSearch = this.toggleSearch.bind(this);
   }
 
@@ -29,14 +28,14 @@ class ListBooks extends Component {
     console.log("Hello from selectionTest method / function");
   }
 
-  renderBookShelves(bookSectionData) {
+  renderBookShelves(bookSectionData, title) {
     return bookSectionData.map(section =>
-      <BookShelf key={section.title} title={section.title} books={section.books} />
+      <BookShelf key={title} title={title} books={section.books} />
     );
   }
 
   render() {
-    console.log("ListBook Props:", this.props);
+    console.log("PROPS:", this.props);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -58,7 +57,9 @@ class ListBooks extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                {this.renderBookShelves(mockLibrary)}
+	              <BookShelf key="Currently Reading" title="Currently Reading" books={this.props.currentlyReading} />
+	              <BookShelf key="Want to Read" title="Want to Read" books={this.props.wantToRead} />
+	              <BookShelf key="Read" title="Read" books={this.props.read} />
               </div>
             </div>
             <div className="open-search">
