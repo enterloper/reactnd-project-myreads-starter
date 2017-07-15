@@ -10,10 +10,11 @@ const propTypes = {
 };
 
 function Book(props) {
+  console.log(props);
   return (
     <div key={props.url} className="book">
       <div className="book-top">
-        <div className="book-cover" style={{ backgroundImage: props.url }}></div>
+        <img className="book-cover" src={props.url} alt={`Book Cover for ${props.title}`} />
         <BookSelection />
       </div>
       <div className="book-title">

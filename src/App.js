@@ -8,32 +8,49 @@ class BooksApp extends Component {
     super(props);
     this.state = {
       books: [],
+      currentlyReading: [],
+      wantToRead: [],
+      read: [],
       location: window.location.pathname,
     };
   }
-      // set your state here
 
-      /**
-       * TODO: Instead of using this state variable to keep track of which page
-       * we're on, use the URL in the browser's address bar. This will ensure that
-       * users can use the browser's back and forward buttons to navigate between
-       * pages, as well as provide a good URL they can bookmark and share.
-       */
-
-      // showSearchPage: true
-
-  // the below method is where this app should make AJAX requests.
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
+    const currentlyReading = [];
+    const wantToRead = [];
+    const read = [];
+    BooksAPI.getAll().then(books => {
+      books.forEach(book => {
+        if(book.shelf === 'currentlyReading') {
+          currentlyReading.push(book);
+        }
+        if(book.shelf === 'wantToRead') {
+          wantToRead.push(book);
+        }
+        if(book.shelf === 'read') {
+          read.push(book);
+        }
+      });
+
+	    this.setState({
+	      books,
+        currentlyReading,
+        wantToRead,
+        read,
+      });
+    });
   }
 
   render() {
-    const { location, books } = this.state;
+    const { location, currentlyReading, wantToRead, read } = this.state;
     return (
       <div>
-        <ListBooks location={location} books={books} />
+        <ListBooks
+          location={location}
+          currentlyReading={currentlyReading}
+          wantToRead={wantToRead}
+          read={read}
+        />
       </div>
     )
   }
