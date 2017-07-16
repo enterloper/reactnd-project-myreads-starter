@@ -6,22 +6,31 @@ const { string } = PropTypes;
 const propTypes = {
   url: string,
   title: string,
+	subtitle: string,
   author: string,
 };
 
 function Book(props) {
-  console.log(props);
+	const { title, url, handleSelect, shelfTitle, index, author } = props;
   return (
-    <div key={props.url} className="book">
+    <div className="book">
       <div className="book-top">
-        <img className="book-cover" src={props.url} alt={`Book Cover for ${props.title}`} />
-        <BookSelection />
+        <img
+	        className="book-cover"
+	        src={url}
+	        alt={`Book Cover for ${title}`}
+        />
+        <BookSelection
+	        handleSelect={handleSelect}
+          shelfTitle={shelfTitle}
+          index={index}
+        />
       </div>
       <div className="book-title">
-        {props.title}
+        {title}
       </div>
       <div className="book-authors">
-        {props.author}
+        {author}
       </div>
     </div>
   );

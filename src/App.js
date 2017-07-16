@@ -13,12 +13,15 @@ class BooksApp extends Component {
       read: [],
       location: window.location.pathname,
     };
+    
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
     const currentlyReading = [];
     const wantToRead = [];
     const read = [];
+
     BooksAPI.getAll().then(books => {
       books.forEach(book => {
         if(book.shelf === 'currentlyReading') {
@@ -41,6 +44,25 @@ class BooksApp extends Component {
     });
   }
 
+	handleSelect(value, index, shelfTitle) {
+		const currentShelf = [...this.state[shelfTitle]];
+
+		if (value === 'none') {
+			currentShelf.splice(index, 1);
+			this.setState({
+				[shelfTitle]: currentShelf,
+			});
+			return;
+		}
+
+		const bookToMove = Object.assign({}, currentShelf.splice(index, 1)[0], { shelf: value });
+		const newShelf = [...this.state[value], bookToMove];
+		this.setState({
+			[shelfTitle]: currentShelf,
+			[value]: newShelf,
+		});
+	}
+
   render() {
     const { location, currentlyReading, wantToRead, read } = this.state;
     return (
@@ -50,6 +72,7 @@ class BooksApp extends Component {
           currentlyReading={currentlyReading}
           wantToRead={wantToRead}
           read={read}
+          handleSelect={this.handleSelect}
         />
       </div>
     )

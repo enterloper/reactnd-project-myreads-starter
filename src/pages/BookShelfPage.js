@@ -11,11 +11,18 @@ const propTypes = {
 		})
 	),
 	toggleSearch: func,
+	handleSelect: func,
 };
 
-function renderBookShelves(bookSectionData) {
-	return bookSectionData.map(section =>
-		<BookShelf key={section.title} title={section.title} books={section.books} />
+function renderBookShelves(bookSectionData, handleSelect) {
+	return bookSectionData.map(section => (
+			<BookShelf
+				key={section.title}
+				title={section.title}
+				books={section.books}
+			  handleSelect={handleSelect}
+			/>
+		)
 	);
 }
 
@@ -26,9 +33,7 @@ function BookShelfPage(props) {
 				<h1>MyReads</h1>
 			</div>
 			<div className="list-books-content">
-				<div>
-					{renderBookShelves(props.bookShelves)}
-				</div>
+				{renderBookShelves(props.bookShelves, props.handleSelect)}
 			</div>
 			<div className="open-search">
 				<a onClick={props.toggleSearch}>Add a book</a>
