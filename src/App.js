@@ -17,18 +17,19 @@ class BooksApp extends Component {
     const wantToRead = [];
     const read = [];
 
-    BooksAPI.getAll().then(books => {
-      books.forEach(book => {
-        if(book.shelf === 'currentlyReading') {
-          currentlyReading.push(book);
-        }
-        if(book.shelf === 'wantToRead') {
-          wantToRead.push(book);
-        }
-        if(book.shelf === 'read') {
-          read.push(book);
-        }
-      });
+    BooksAPI.getAll()
+	    .then(books => {
+	      books.forEach(book => {
+	        if(book.shelf === 'currentlyReading') {
+	          currentlyReading.push(book);
+	        }
+	        if(book.shelf === 'wantToRead') {
+	          wantToRead.push(book);
+	        }
+	        if(book.shelf === 'read') {
+	          read.push(book);
+	        }
+	      });
 
 	    this.setState({
 	      books,

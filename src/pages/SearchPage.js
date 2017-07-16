@@ -10,11 +10,16 @@ const propTypes = {
 class SearchPage extends Component {
 	state = {
 		searchValue: '',
+		results: [],
 	};
 
 	componentDidMount() {
-		const test = BooksAPI.search('Android', 50);
-		console.log(test);
+		BooksAPI.search('Android', 50)
+			.then(results => {
+				this.setState({
+					results,
+				});
+			});
 	}
 
 	handleSearch = (e) => {
@@ -25,6 +30,7 @@ class SearchPage extends Component {
 	};
 
 	render() {
+		console.log(this.state.results);
 		return (
 			<div className="search-books">
 				<div className="search-books-bar">
