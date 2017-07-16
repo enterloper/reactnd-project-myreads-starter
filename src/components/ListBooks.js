@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import * as BooksAPI from '../BooksAPI'
 import { BookShelfPage, SearchPage } from '../pages';
 
-const { array } = PropTypes;
+const { array, func } = PropTypes;
 const propTypes = {
 	currentlyReading: array,
 	wantToRead: array,
 	read: array,
+	handleSelect: func,
 };
 
 class ListBooks extends Component {
@@ -29,13 +29,9 @@ class ListBooks extends Component {
     	showSearchPage: !this.state.showSearchPage,
     });
   }
-  
-  selectionTest() {
-	  console.log("Hello from selectionTest method / function");
-  }
 
   render() {
-  	const { currentlyReading, wantToRead, read } = this.props;
+  	const { currentlyReading, wantToRead, read, handleSelect } = this.props;
   	const bookShelves = [
 		  {
 			  title: 'Currently Reading',
@@ -55,7 +51,11 @@ class ListBooks extends Component {
       <div className="app">
         {this.state.showSearchPage ?
 	        <SearchPage toggleSearch={this.toggleSearch}/> :
-	        <BookShelfPage bookShelves={bookShelves} toggleSearch={this.toggleSearch} />
+	        <BookShelfPage
+		        bookShelves={bookShelves}
+		        toggleSearch={this.toggleSearch}
+		        handleSelect={handleSelect}
+	        />
         }
       </div>
     )
