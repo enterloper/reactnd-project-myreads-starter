@@ -24,10 +24,20 @@ class BooksApp extends Component {
 		console.log('VALUE:', value);
 		console.log('SHELFTITLE:', shelfTitle);
 		const currentShelf = [...this.state[shelfTitle]];
+
 		if (value === 'none') {
 			currentShelf.splice(index, 1);
 			this.setState({
 				[shelfTitle]: currentShelf,
+			});
+		}
+
+		if (value === 'currentlyReading') {
+			const bookToMove = currentShelf.splice(index, 1);
+			const newShelf = [...this.state.currentlyReading, bookToMove[0]];
+			this.setState({
+				[shelfTitle]: currentShelf,
+				currentlyReading: newShelf,
 			});
 		}
 	}
