@@ -19,10 +19,7 @@ class BooksApp extends Component {
 
 
 
-	handleSelect(value, bookTitle, index, shelfTitle) {
-		console.log('TITLE:', bookTitle);
-		console.log('VALUE:', value);
-		console.log('SHELFTITLE:', shelfTitle);
+	handleSelect(value, index, shelfTitle) {
 		const currentShelf = [...this.state[shelfTitle]];
 
 		if (value === 'none') {
@@ -30,16 +27,15 @@ class BooksApp extends Component {
 			this.setState({
 				[shelfTitle]: currentShelf,
 			});
+			return;
 		}
 
-		if (value === 'currentlyReading') {
-			const bookToMove = currentShelf.splice(index, 1);
-			const newShelf = [...this.state.currentlyReading, bookToMove[0]];
-			this.setState({
-				[shelfTitle]: currentShelf,
-				currentlyReading: newShelf,
-			});
-		}
+		const bookToMove = Object.assign({}, currentShelf.splice(index, 1)[0], { shelf: value });
+		const newShelf = [...this.state[value], bookToMove];
+		this.setState({
+			[shelfTitle]: currentShelf,
+			[value]: newShelf,
+		});
 	}
 
   componentDidMount() {

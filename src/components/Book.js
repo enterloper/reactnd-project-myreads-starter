@@ -21,7 +21,6 @@ function Book(props) {
 	        alt={`Book Cover for ${title}`}
         />
         <BookSelection
-	        bookTitle={title}
 	        handleSelect={handleSelect}
           shelfTitle={shelfTitle}
           index={index}
