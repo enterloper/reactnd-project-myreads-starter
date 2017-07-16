@@ -9,9 +9,9 @@ const propTypes = {
 			title: string,
 			books: arrayOf(bookPropType),
 		})
-	),
-	toggleSearch: func,
-	handleSelect: func,
+	).isRequired,
+	toggleSearch: func.isRequired,
+	handleSelect: func.isRequired,
 };
 
 function renderBookShelves(bookSectionData, handleSelect) {

@@ -4,23 +4,18 @@ import { BookShelfPage, SearchPage } from '../pages';
 
 const { array, func } = PropTypes;
 const propTypes = {
-	currentlyReading: array,
-	wantToRead: array,
-	read: array,
-	handleSelect: func,
+	currentlyReading: array.isRequired,
+	wantToRead: array.isRequired,
+	read: array.isRequired,
+	handleSelect: func.isRequired,
 };
 
 class ListBooks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-	    showSearchPage: this.props.location === '/search',
-    };
-		
-    this.toggleSearch = this.toggleSearch.bind(this);
-  }
+	state = {
+    showSearchPage: this.props.location === '/search',
+  };
 
-  toggleSearch() {
+  toggleSearch = () => {
   	const ROOT_URL = 'http://localhost:3000/';
     const dropPoint = window.location.pathname === '/' ? `${ROOT_URL}search` : ROOT_URL;
 
@@ -28,7 +23,7 @@ class ListBooks extends Component {
     this.setState({
     	showSearchPage: !this.state.showSearchPage,
     });
-  }
+  };
 
   render() {
   	const { currentlyReading, wantToRead, read, handleSelect } = this.props;

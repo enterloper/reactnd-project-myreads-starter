@@ -4,18 +4,13 @@ import ListBooks from './components/ListBooks';
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-      currentlyReading: [],
-      wantToRead: [],
-      read: [],
-      location: window.location.pathname,
-    };
-    
-    this.handleSelect = this.handleSelect.bind(this);
-  }
+	state = {
+    books: [],
+    currentlyReading: [],
+    wantToRead: [],
+    read: [],
+    location: window.location.pathname,
+  };
 
   componentDidMount() {
     const currentlyReading = [];
@@ -44,7 +39,7 @@ class BooksApp extends Component {
     });
   }
 
-	handleSelect(value, index, shelfTitle) {
+	handleSelect = (value, index, shelfTitle) => {
 		const currentShelf = [...this.state[shelfTitle]];
 
 		if (value === 'none') {
@@ -61,21 +56,19 @@ class BooksApp extends Component {
 			[shelfTitle]: currentShelf,
 			[value]: newShelf,
 		});
-	}
+	};
 
   render() {
     const { location, currentlyReading, wantToRead, read } = this.state;
     return (
-      <div>
-        <ListBooks
-          location={location}
-          currentlyReading={currentlyReading}
-          wantToRead={wantToRead}
-          read={read}
-          handleSelect={this.handleSelect}
-        />
-      </div>
-    )
+      <ListBooks
+        location={location}
+        currentlyReading={currentlyReading}
+        wantToRead={wantToRead}
+        read={read}
+        handleSelect={this.handleSelect}
+      />
+    );
   }
 }
 
