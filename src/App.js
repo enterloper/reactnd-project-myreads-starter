@@ -17,27 +17,6 @@ class BooksApp extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
-
-
-	handleSelect(value, index, shelfTitle) {
-		const currentShelf = [...this.state[shelfTitle]];
-
-		if (value === 'none') {
-			currentShelf.splice(index, 1);
-			this.setState({
-				[shelfTitle]: currentShelf,
-			});
-			return;
-		}
-
-		const bookToMove = Object.assign({}, currentShelf.splice(index, 1)[0], { shelf: value });
-		const newShelf = [...this.state[value], bookToMove];
-		this.setState({
-			[shelfTitle]: currentShelf,
-			[value]: newShelf,
-		});
-	}
-
   componentDidMount() {
     const currentlyReading = [];
     const wantToRead = [];
@@ -64,6 +43,25 @@ class BooksApp extends Component {
       });
     });
   }
+
+	handleSelect(value, index, shelfTitle) {
+		const currentShelf = [...this.state[shelfTitle]];
+
+		if (value === 'none') {
+			currentShelf.splice(index, 1);
+			this.setState({
+				[shelfTitle]: currentShelf,
+			});
+			return;
+		}
+
+		const bookToMove = Object.assign({}, currentShelf.splice(index, 1)[0], { shelf: value });
+		const newShelf = [...this.state[value], bookToMove];
+		this.setState({
+			[shelfTitle]: currentShelf,
+			[value]: newShelf,
+		});
+	}
 
   render() {
     const { location, currentlyReading, wantToRead, read } = this.state;
